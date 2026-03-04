@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@theme {
+  /* Backgrounds — escuro profundo mas não preto total */
+  --color-bg-primary: #0A0F1A;
+  --color-bg-secondary: #0E1520;
+  --color-bg-tertiary: #121B2E;
+  --color-bg-elevated: #192236;
+  --color-bg-hover: #1E293B;
+
+  /* Accent principal — azul elétrico limpo */
+  --color-accent: #3B82F6;
+  --color-accent-hover: #60A5FA;
+  --color-accent-muted: rgba(59, 130, 246, 0.12);
+
+  /* Accent secundário — âmbar para CTAs de destaque */
+  --color-cta: #F59E0B;
+  --color-cta-hover: #FCD34D;
+
+  /* Texto */
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #94A3B8;
+  --color-text-tertiary: #475569;
+  --color-text-muted: #334155;
+
+  /* Bordas */
+  --color-border: #1E293B;
+  --color-border-subtle: #0F172A;
+  --color-border-strong: #334155;
+
+  /* Perfis — identidade clara por cor */
+  --color-sindico: #3B82F6;
+  --color-morador: #10B981;
+  --color-zelador: #F59E0B;
+  --color-prestador: #8B5CF6;
+
+  /* Feedback */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+
+  /* Tipografia */
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-border-strong);
+  }
+}
+
+@layer components {
+  .surface-card {
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+
+  .surface-card-sm {
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  .text-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+
+  .text-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Grade sutil de pontos */
+  .dot-grid {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Linha separadora com fade */
+  .divider-fade {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-border), transparent);
+  }
+
+  /* Tag de status ativa */
+  .status-dot-active {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-success);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  }
+
+  /* Typing dots logic retained but cleaned up */
+  .typing-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-text-tertiary);
+    animation: typing-dot 1.4s ease-in-out infinite;
+  }
+
+  @keyframes typing-dot {
+
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: translateY(0);
+    }
+
+    50% {
+      opacity: 1;
+      transform: translateY(-4px);
+    }
+  }
+}
