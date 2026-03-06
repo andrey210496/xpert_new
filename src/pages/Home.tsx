@@ -10,9 +10,7 @@ import type { ProfileType } from '../types';
 import { motion } from 'framer-motion';
 import { Building2, Home, Wrench, Hammer, Rocket } from 'lucide-react';
 import logo from '../assets/logo.png';
-
-// Dynamic reference — won't break build if file is missing
-const LOGO_PREVENTE_PATH = '/logo_prevente.png';
+import logoPrevente from '../assets/logo_prevente.png';
 
 const AGENT_TABS = [
     { type: 'admin' as ProfileType, label: 'SÍNDICO(A)', Icon: Building2, color: '#3B82F6' },
@@ -145,7 +143,7 @@ export default function HomePage() {
 
                 <div className="absolute bottom-8 right-6 lg:right-12 z-50">
                     <img
-                        src={LOGO_PREVENTE_PATH}
+                        src={logoPrevente}
                         alt="Prevente"
                         className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity object-contain"
                         onError={(e) => {
