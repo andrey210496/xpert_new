@@ -77,7 +77,7 @@ interface LeadData {
 }
 
 export default function SuperAdminDashboard({ onNavigateHome }: SuperAdminDashboardProps) {
-    const { profile, signOut } = useAuth();
+    const { signOut } = useAuth();
     const [activeTab, setActiveTab] = useState<'overview' | 'tenants' | 'leads' | 'settings' | 'agents'>('overview');
     const [searchTerm, setSearchTerm] = useState('');
     const [tenantsList, setTenantsList] = useState<TenantData[]>([]);
@@ -178,10 +178,10 @@ export default function SuperAdminDashboard({ onNavigateHome }: SuperAdminDashbo
     };
 
     const LEAD_STATUS_STYLE: Record<string, string> = {
-        new:       'bg-accent/10 text-accent border-accent/30',
+        new: 'bg-accent/10 text-accent border-accent/30',
         contacted: 'bg-warning/10 text-warning border-warning/30',
         converted: 'bg-success/10 text-success border-success/30',
-        lost:      'bg-error/10 text-error border-error/30',
+        lost: 'bg-error/10 text-error border-error/30',
     };
 
     const LEAD_STATUS_LABEL: Record<string, string> = {

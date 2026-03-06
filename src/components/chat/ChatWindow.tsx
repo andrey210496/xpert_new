@@ -312,8 +312,15 @@ function MessageBubble({
                 {isUser ? (
                     <p className="text-sm leading-relaxed whitespace-pre-wrap font-sans">{message.content}</p>
                 ) : (
-                    <div className="markdown-content text-sm text-text-primary font-sans leading-relaxed">
-                        <ReactMarkdown>{message.content || '...'}</ReactMarkdown>
+                    <div className="flex flex-col gap-2">
+                        <div className="markdown-content text-sm text-text-primary font-sans leading-relaxed">
+                            <ReactMarkdown>{message.content || '...'}</ReactMarkdown>
+                        </div>
+                        <div className="mt-2 pt-2 border-t border-border/50">
+                            <p className="text-[10px] text-text-tertiary italic leading-tight">
+                                🤖 Esta é uma resposta gerada por inteligência artificial e pode cometer erros. Verifique sempre informações cruciais na convenção do condomínio.
+                            </p>
+                        </div>
                     </div>
                 )}
                 <div className={`text-[10px] mt-1.5 font-mono uppercase tracking-widest ${isUser ? 'text-right' : ''} text-text-tertiary opacity-60`}>

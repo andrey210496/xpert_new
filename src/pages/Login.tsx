@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { isSupabaseConfigured } from '../services/supabase';
 import { Modal, Input, Button } from '../components/ui';
-import { LogIn, ShieldAlert } from 'lucide-react';
+import { LogIn } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 interface LoginModalProps {
@@ -12,7 +11,7 @@ interface LoginModalProps {
 }
 
 export function LoginModal({ isOpen, onClose, onSwitchToSignup }: LoginModalProps) {
-    const { signIn, setDemoProfile } = useAuth();
+    const { signIn } = useAuth();
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -101,38 +100,6 @@ export function LoginModal({ isOpen, onClose, onSwitchToSignup }: LoginModalProp
                     </button>
                 </div>
             </form>
-
-            {!isSupabaseConfigured() && (
-                <div className="mt-8 pt-6 border-t border-border">
-                    <p className="text-[9px] uppercase tracking-[0.2em] font-bold text-text-tertiary text-center mb-3">Acesso Demonstração</p>
-                    <div className="flex flex-col gap-2">
-                        <button
-                            type="button"
-                            onClick={() => { setDemoProfile('admin'); onClose(); navigate('/dashboard'); }}
-                            className="w-full text-[10px] uppercase tracking-widest font-bold text-text-tertiary hover:text-accent hover:bg-accent/5 flex items-center justify-center gap-1.5 transition-colors cursor-pointer py-2 rounded-md border border-border/50 hover:border-accent/20"
-                        >
-                            <LogIn size={11} className="opacity-50" />
-                            Entrar como Síndico (DEMO)
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => { setDemoProfile('morador'); onClose(); navigate('/chat/morador'); }}
-                            className="w-full text-[10px] uppercase tracking-widest font-bold text-text-tertiary hover:text-accent hover:bg-accent/5 flex items-center justify-center gap-1.5 transition-colors cursor-pointer py-2 rounded-md border border-border/50 hover:border-accent/20"
-                        >
-                            <LogIn size={11} className="opacity-50" />
-                            Entrar como Morador (DEMO)
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => { setDemoProfile('superadmin'); onClose(); navigate('/superadmin'); }}
-                            className="w-full text-[9px] uppercase tracking-[0.2em] font-bold text-text-tertiary hover:text-text-secondary flex items-center justify-center gap-1.5 transition-colors cursor-pointer py-2"
-                        >
-                            <ShieldAlert size={11} className="opacity-50" />
-                            SuperAdmin (DEMO)
-                        </button>
-                    </div>
-                </div>
-            )}
         </Modal>
     );
 }

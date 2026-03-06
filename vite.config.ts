@@ -7,4 +7,16 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-ui': ['framer-motion', 'lucide-react', 'recharts'],
+          'vendor-utils': ['@supabase/supabase-js', 'date-fns', 'react-markdown'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600,
+  },
 })
