@@ -637,7 +637,7 @@ function SignupBanner({ variant, onSignup, onLogin, currentMessages }: { variant
             <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mx-6 mt-4 p-4 rounded-xl bg-accent/5 border border-accent/10 flex items-center justify-between group hover:bg-accent/10 transition-all"
+                className="mx-4 sm:mx-6 mt-4 p-3 sm:p-4 rounded-xl bg-accent/5 border border-accent/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 group hover:bg-accent/10 transition-all"
             >
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent">
@@ -801,7 +801,7 @@ export function ChatWindow({ agentType, embeddedAgentType, onNavigateSignup, onN
                                         onClick={() => setUserMenuOpen(!userMenuOpen)}
                                         className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg hover:bg-bg-hover transition-all group border border-transparent hover:border-border"
                                     >
-                                        <div className="flex flex-col items-end mr-1">
+                                        <div className="hidden sm:flex flex-col items-end mr-1">
                                             <span className="text-xs font-bold text-text-primary tracking-tight group-hover:text-accent transition-colors">{profile.full_name}</span>
                                             <span className="text-[9px] font-bold text-text-tertiary uppercase tracking-widest opacity-60">Meu Perfil</span>
                                         </div>

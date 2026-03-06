@@ -37,7 +37,7 @@ export function ChatPreview({ selectedAgent, onAgentClick, onCTAClick }: ChatPre
             </p>
 
             {/* Cards row */}
-            <div className="flex gap-3 items-stretch">
+            <div className="flex flex-col sm:flex-row gap-3 items-stretch">
                 {/* Chat preview card */}
                 <motion.button
                     onClick={onAgentClick}
@@ -59,7 +59,7 @@ export function ChatPreview({ selectedAgent, onAgentClick, onCTAClick }: ChatPre
                     onClick={onCTAClick}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="shrink-0 w-44 flex flex-col items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white rounded-lg p-4 cursor-pointer transition-colors"
+                    className="shrink-0 w-full sm:w-44 flex flex-col items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white rounded-lg p-4 cursor-pointer transition-colors"
                 >
                     <span className="text-[10px] uppercase tracking-[0.15em] font-bold leading-tight text-center">
                         Leve o XPERT para sua Administradora

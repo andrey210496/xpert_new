@@ -87,7 +87,7 @@ export default function HomePage() {
                 <Ticker />
 
                 {/* Main content — centered vertically */}
-                <main className="flex-1 flex flex-col items-center justify-center min-h-0 gap-4">
+                <main className="flex-1 flex flex-col items-center justify-center min-h-0 gap-3 overflow-y-auto">
                     {/* Hero */}
                     <HeroSection />
 
@@ -103,7 +103,7 @@ export default function HomePage() {
                                     transition={{ delay: 0.1 + i * 0.05 }}
                                     onClick={() => setSelectedAgent(tab.type)}
                                     className={`
-                                    flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider
+                                    flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider
                                     border transition-all duration-150 cursor-pointer
                                     ${isActive
                                             ? 'bg-accent/10 border-accent text-accent'
@@ -112,7 +112,8 @@ export default function HomePage() {
                                 `}
                                 >
                                     <tab.Icon size={14} />
-                                    {tab.label}
+                                    <span className="hidden sm:inline">{tab.label}</span>
+                                    <span className="sm:hidden">{tab.label.split('(')[0].split(' ')[0]}</span>
                                 </motion.button>
                             );
                         })}
@@ -134,24 +135,20 @@ export default function HomePage() {
                     onSwitchToSignup={handleSignup}
                 />
 
-                {/* Integrated Footer Elements (Bottom are part of the body) */}
-                <div className="absolute bottom-8 left-6 lg:left-12 z-50 pointer-events-none">
+                {/* Footer — inline flow to avoid mobile overlap */}
+                <footer className="shrink-0 w-full flex items-center justify-between px-6 lg:px-12 py-3">
                     <p className="text-[10px] font-bold text-text-tertiary uppercase tracking-widest opacity-60">
                         © 2025 Prevente Engenharia Diagnóstica
                     </p>
-                </div>
-
-                <div className="absolute bottom-8 right-6 lg:right-12 z-50">
                     <img
                         src={logoPrevente}
                         alt="Prevente"
-                        className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity object-contain"
+                        className="h-10 sm:h-12 w-auto opacity-80 hover:opacity-100 transition-opacity object-contain"
                         onError={(e) => {
-                            // Fallback if logo_prevente.png is missing
                             (e.target as HTMLImageElement).src = logo;
                         }}
                     />
-                </div>
+                </footer>
             </div>
         </div>
     );

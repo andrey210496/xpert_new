@@ -139,7 +139,28 @@ export default function Dashboard({ onNavigateHome }: DashboardProps) {
                 </nav>
 
                 {/* Main Content Area */}
-                <main className="flex-1 p-6 md:p-8">
+                <main className="flex-1 p-4 sm:p-6 md:p-8">
+                    {/* Mobile Tab Navigation */}
+                    <div className="flex gap-2 mb-6 lg:hidden overflow-x-auto pb-2">
+                        {[
+                            { id: 'overview', label: 'Visão Geral', Icon: BarChart3 },
+                            { id: 'users', label: 'Usuários', Icon: Users },
+                            { id: 'chat', label: 'Assistente', Icon: MessageSquare },
+                            { id: 'settings', label: 'Config', Icon: Settings },
+                        ].map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => setActiveTab(item.id as typeof activeTab)}
+                                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold whitespace-nowrap cursor-pointer border transition-colors ${activeTab === item.id
+                                        ? 'bg-accent/10 text-accent border-accent/20'
+                                        : 'text-text-secondary border-transparent bg-bg-tertiary hover:bg-bg-hover'
+                                    }`}
+                            >
+                                <item.Icon size={14} />
+                                {item.label}
+                            </button>
+                        ))}
+                    </div>
                     {activeTab === 'overview' && (
                         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
                             {/* Simple Alert Bar */}
@@ -245,33 +266,35 @@ export default function Dashboard({ onNavigateHome }: DashboardProps) {
                             <div className="space-y-4">
                                 <h3 className="text-xs font-bold text-text-tertiary uppercase tracking-widest font-mono">Logs de Operação</h3>
                                 <div className="border border-border rounded-lg overflow-hidden">
-                                    <table className="w-full text-left text-xs bg-bg-secondary">
-                                        <thead>
-                                            <tr className="bg-bg-tertiary/50 border-b border-border">
-                                                <th className="px-6 py-3 font-bold text-text-tertiary uppercase tracking-widest">Identidade</th>
-                                                <th className="px-6 py-3 font-bold text-text-tertiary uppercase tracking-widest">Atribuição</th>
-                                                <th className="px-6 py-3 font-bold text-text-tertiary uppercase tracking-widest">Consumo</th>
-                                                <th className="px-6 py-3 font-bold text-text-tertiary uppercase tracking-widest text-right">Acesso</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-border/50">
-                                            {recentUsers.map((user, i) => (
-                                                <tr key={i} className="hover:bg-bg-hover/50 transition-colors">
-                                                    <td className="px-6 py-4 font-semibold text-text-primary">{user.name}</td>
-                                                    <td className="px-6 py-4">
-                                                        <Badge variant={profileVariant[user.type]} showDot={false}>{profileLabels[user.type]}</Badge>
-                                                    </td>
-                                                    <td className="px-6 py-4 font-mono text-text-secondary">{formatTokenCount(user.tokens)}</td>
-                                                    <td className="px-6 py-4 text-right">
-                                                        <div className="flex items-center justify-end gap-2">
-                                                            <span className={user.active ? 'status-dot-active' : 'w-1.5 h-1.5 rounded-full bg-text-muted'} />
-                                                            <span className="text-[10px] uppercase font-bold text-text-tertiary">{user.active ? 'Ativo' : 'Offline'}</span>
-                                                        </div>
-                                                    </td>
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left text-xs bg-bg-secondary min-w-[600px]">
+                                            <thead>
+                                                <tr className="bg-bg-tertiary/50 border-b border-border">
+                                                    <th className="px-6 py-3 font-bold text-text-tertiary uppercase tracking-widest">Identidade</th>
+                                                    <th className="px-6 py-3 font-bold text-text-tertiary uppercase tracking-widest">Atribuição</th>
+                                                    <th className="px-6 py-3 font-bold text-text-tertiary uppercase tracking-widest">Consumo</th>
+                                                    <th className="px-6 py-3 font-bold text-text-tertiary uppercase tracking-widest text-right">Acesso</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody className="divide-y divide-border/50">
+                                                {recentUsers.map((user, i) => (
+                                                    <tr key={i} className="hover:bg-bg-hover/50 transition-colors">
+                                                        <td className="px-6 py-4 font-semibold text-text-primary">{user.name}</td>
+                                                        <td className="px-6 py-4">
+                                                            <Badge variant={profileVariant[user.type]} showDot={false}>{profileLabels[user.type]}</Badge>
+                                                        </td>
+                                                        <td className="px-6 py-4 font-mono text-text-secondary">{formatTokenCount(user.tokens)}</td>
+                                                        <td className="px-6 py-4 text-right">
+                                                            <div className="flex items-center justify-end gap-2">
+                                                                <span className={user.active ? 'status-dot-active' : 'w-1.5 h-1.5 rounded-full bg-text-muted'} />
+                                                                <span className="text-[10px] uppercase font-bold text-text-tertiary">{user.active ? 'Ativo' : 'Offline'}</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>

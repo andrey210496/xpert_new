@@ -110,7 +110,7 @@ export function LeadForm({ isOpen, onClose }: LeadFormProps) {
                     <p className="text-text-secondary text-sm mb-2">
                         Preencha seus dados e nossa equipe entrará em contato para apresentar como o XPERT pode revolucionar a gestão do seu condomínio.
                     </p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <Input
                             label="Nome"
                             placeholder="Seu nome"

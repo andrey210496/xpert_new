@@ -306,7 +306,7 @@ export default function SuperAdminDashboard({ onNavigateHome }: SuperAdminDashbo
                 <main className="flex-1 p-6 lg:p-8 max-w-7xl mx-auto w-full">
                     {/* Mobile Tabs */}
                     <div className="flex gap-2 mb-6 lg:hidden overflow-x-auto pb-2 scrollbar-hide">
-                        {['overview', 'tenants', 'leads', 'agents'].map((tab) => (
+                        {['overview', 'tenants', 'leads', 'agents', 'settings'].map((tab) => (
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab as typeof activeTab)}
@@ -500,7 +500,7 @@ export default function SuperAdminDashboard({ onNavigateHome }: SuperAdminDashbo
                                                         <td className="p-4">
                                                             <button
                                                                 onClick={() => { setSelectedTenant(tenant); setIsEditTenantModalOpen(true); }}
-                                                                className="text-sm text-accent hover:underline flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                                                                className="text-sm text-accent hover:underline flex items-center gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity cursor-pointer"
                                                             >
                                                                 Gerenciar <ChevronRight size={14} />
                                                             </button>
@@ -517,7 +517,7 @@ export default function SuperAdminDashboard({ onNavigateHome }: SuperAdminDashbo
 
                     {activeTab === 'leads' && (
                         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-                            <div className="flex items-center justify-between">
+                            <div className="flex flex-wrap items-center justify-between gap-3">
                                 <div>
                                     <h2 className="text-xl font-bold text-text-primary">Leads Capturados</h2>
                                     <p className="text-sm text-text-secondary">Interessados via formulário da landing page.</p>
